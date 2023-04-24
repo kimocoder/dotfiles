@@ -29,8 +29,8 @@ offsets = findMagics(systemimg)
 if len(offsets[1:]) != 0:
     for num, offset in enumerate(offsets[1:], start=1):
         print('ext4 magic number found at byte %d' % offset)
-        name = "{}_part{}.img".format(systemimg, num)
-        print('Creating {}...'.format(name))
+        name = f"{systemimg}_part{num}.img"
+        print(f'Creating {name}...')
         copyExt4Image(systemimg, offset, offsets[num + 1] - offset, name)
 else:
     print("Not ext4 images found")

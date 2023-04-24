@@ -24,13 +24,13 @@ def run_subprocess(cmd):
 
 
 def get_tags(tag_name):
-    cmd = "git tag -l %s" % tag_name
+    cmd = f"git tag -l {tag_name}"
     comm = run_subprocess(cmd)
     return comm[0].strip("\n").split("\n")
 
 
 def get_total_changes(tag_name):
-    cmd = "git diff %s --shortstat" % tag_name
+    cmd = f"git diff {tag_name} --shortstat"
     comm = run_subprocess(cmd)
     try:
         a, d = comm[0].split(",")[1:]
@@ -68,9 +68,9 @@ def background(q, e, s):
                 best = tc
                 tag = tn
                 if not s:
-                    print("%s is the new best match with %d lines changed" % (tn, tc))
+                    print("%s is the new best match with %d lines changed" % (tag, best))
     print("Best match")
-    print("TAG: %s" % tag)
+    print(f"TAG: {tag}")
     print("Lines changed: %d" % best)
 
 

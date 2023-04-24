@@ -7,8 +7,8 @@ module_regex = re.compile("(?=)[ymn]")
 
 def process(config):
     kind = module_regex.search(config).group()
-    name = config.replace("={}".format(kind), "")
-    print("config {}\n        bool\n        default {}\n".format(name, kind))
+    name = config.replace(f"={kind}", "")
+    print(f"config {name}\n        bool\n        default {kind}\n")
 
 with open(sys.argv[1]) as f:
     for line in f:
